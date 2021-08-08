@@ -1,0 +1,21 @@
+# Config for running with potato laptop
+# Feel free to use it as reference
+dataset:
+  train:
+    path_to_left: "/home/ardiya/dataset/SceneFlow/train/image_clean/left/"
+    path_to_right: "/home/ardiya/dataset/SceneFlow/train/image_clean/right/"
+    path_to_disparity: "/home/ardiya/dataset/SceneFlow/train/disparity/left/"
+  val:
+    path_to_left: "/home/ardiya/dataset/SceneFlow/val/image_clean/left/"
+    path_to_right: "/home/ardiya/dataset/SceneFlow/val/image_clean/right/"
+    path_to_disparity: "/home/ardiya/dataset/SceneFlow/val/disparity/left/"
+net:
+  im_height: 192
+  im_width: 384
+  max_disparity: 96
+model:
+  log_dir: "logs/"
+  checkpoint_dir: "ckpt/"
+  batch_size: 1
+  max_epoch: 1
+  
