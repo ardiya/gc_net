@@ -21,8 +21,9 @@ class PrepData:
     ) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
         H, W, _ = left.shape
 
-        r = np.random.randint(0, H - self.target_height)
-        c = np.random.randint(0, W - self.target_width)
+        rand = np.random.RandomState()
+        r = rand.randint(0, H - self.target_height)
+        c = rand.randint(0, W - self.target_width)
 
         # random cropping from [r,c] to [r+target_height, c+target_width]
         left = left[r : r + self.target_height, c : c + self.target_width, :]
