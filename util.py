@@ -51,20 +51,33 @@ class TensorboardImageCallback(tf.keras.callbacks.Callback):
             tf.summary.image("gt", gt, step=self.curr_batch)
         self.curr_batch += 1
 
+    def _process_rgb(self, inputs):
+        outs = list()
+        for i in range(inputs.shape[0]):
+            outs.append(
+                cv2.cvtColor(normalize_img_for_vis(inputs[i, ...]), cv2.COLOR_BGR2RGB)
+            )
+        return np.array(outs, dtype=np.uint8)
+
     def _process_disparity(self, inputs):
         outs = list()
         for i in range(inputs.shape[0]):
-            outs.append(normalize_disparity_for_vis(inputs[i, ...], self.max_disparity))
+            outs.append(
+                cv2.cvtColor(
+                    normalize_disparity_for_vis(inputs[i, ...], self.max_disparity),
+                    cv2.COLOR_BGR2RGB,
+                )
+            )
         return np.array(outs, dtype=np.uint8)
 
 
 class CustomProgBarLogger(tf.keras.callbacks.ProgbarLogger):
-    def __init__(self, steps_per_epoch, verbose =1):
+    def __init__(self, steps_per_epoch, verbose=1):
         super(CustomProgBarLogger, self).__init__()
         self.seen = 0
         self.steps_per_epoch = steps_per_epoch
         self.verbose = verbose
-        
+
     def on_train_batch_end(self, _, logs=None):
         if self.progbar is None:
             self.progbar = Progbar(target=self.steps_per_epoch, verbose=self.verbose)
