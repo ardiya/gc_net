@@ -10,12 +10,12 @@ dataset:
     path_to_right: "/home/ardiya/dataset/SceneFlow/val/image_clean/right/"
     path_to_disparity: "/home/ardiya/dataset/SceneFlow/val/disparity/left/"
 net:
-  im_height: 192
-  im_width: 384
+  im_height: 224
+  im_width: 448
   max_disparity: 96
 model:
   log_dir: "logs/"
   checkpoint_dir: "ckpt/"
   batch_size: 1
-  max_epoch: 1
+  max_epoch: 2
   
